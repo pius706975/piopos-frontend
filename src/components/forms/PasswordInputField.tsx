@@ -7,6 +7,8 @@ interface PasswordInputProps {
     showPassword: boolean;
     placeholder?: string;
     toggleShowPassword: () => void;
+    toggleShowPasswordColor?: string;
+    label?: string;
 }
 
 const PasswordInput: React.FC<PasswordInputProps> = ({
@@ -15,13 +17,15 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
     showPassword,
     placeholder,
     toggleShowPassword,
+    toggleShowPasswordColor,
+    label
 }) => {
     return (
         <div className="mb-6">
             <label
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700">
-                Password
+                {label}
             </label>
             <input
                 type={showPassword ? 'text' : 'password'}
@@ -41,7 +45,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
                     onChange={toggleShowPassword}
                     className="mr-2"
                 />
-                <label htmlFor="showPassword" className="text-sm text-gray-600">
+                <label htmlFor="showPassword" className={`text-sm ${toggleShowPasswordColor}`}>
                     Show Password
                 </label>
             </div>

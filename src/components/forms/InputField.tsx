@@ -6,7 +6,7 @@ interface InputFieldProps {
     name: string;
     value: string;
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    label: string;
+    label?: string;
     placeholder?: string;
     required?: boolean;
 }
@@ -36,7 +36,7 @@ const InputField: React.FC<InputFieldProps> = ({
                 value={value}
                 onChange={onChange}
                 required={required}
-                className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0891b2]"
             />
         </div>
     );
