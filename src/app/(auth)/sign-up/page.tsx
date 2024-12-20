@@ -67,7 +67,7 @@ const SignUp = () => {
                 <Button
                     text="Sign Up"
                     type="submit"
-                    color="bg-cyan-600"
+                    bgColor="bg-cyan-600"
                 />
             </form>
         </div>

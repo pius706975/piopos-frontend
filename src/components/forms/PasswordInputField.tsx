@@ -34,7 +34,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
                 value={value}
                 onChange={onChange}
                 placeholder={placeholder}
-                required
+                // required
                 className="mt-2 block w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <div className="flex items-center mt-2">

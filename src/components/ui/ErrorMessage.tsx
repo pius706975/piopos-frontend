@@ -1,27 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-interface ErrorMessageProps {
+interface ErrorToastProps {
     message: string;
-    timeout?: number;
+    onClose: () => void;
 }
 
-const ErrorMessage: React.FC<ErrorMessageProps> = ({
-    message,
-    timeout = 5000,
-}) => {
-    const [visible, setVisible] = useState(true);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setVisible(false);
-        }, timeout);
-
-        return () => clearTimeout(timer);
-    }, [timeout]);
-
-    if (!visible) return null;
-
-    return <div className="text-red-500 text-sm mt-1">{message}</div>;
+const ErrorToast: React.FC<ErrorToastProps> = ({ message, onClose }) => {
+    return (
+        <div className="flex items-center justify-between text-red-600 bg-red-100/80 shadow-white-lg text-md px-4 py-2 rounded shadow-lg border border-red-600">
+            <p>{message}</p>
+            <button
+                onClick={onClose}
+                className="text-red-600 hover:text-red-800 font-bold text-xl">
+                &times;
+            </button>
+        </div>
+    );
 };
 
-export default ErrorMessage;
+export const useErrorToast = () => {
+    const [error, setError] = useState<string | null>(null);
+
+    const showError = (message: string) => {
+        setError(message);
+        setTimeout(() => {
+            setError(null);
+        }, 4000);
+    };
+
+    const ErrorToastComponent = error ? (
+        <ErrorToast message={error} onClose={() => setError(null)} />
+    ) : null;
+
+    return { showError, ErrorToastComponent };
+};
